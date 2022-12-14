@@ -9,6 +9,7 @@ const Home = () => {
             <h1 className="inline bg-gradient-to-r from-indigo-200 via-violet-700 to-indigo-200 bg-clip-text font-display text-5xl tracking-tight text-transparent">
               Home 1
             </h1>
+            {/* //crear un link */}
             <Link 
             to={"/login"}
             className="block text-center my-5 text-violet-600 uppercase text-sm"

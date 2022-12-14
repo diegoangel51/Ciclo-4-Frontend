@@ -1,18 +1,37 @@
-import React, { useState }  from 'react';
+import React, { useEffect, useState }  from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar'; 
 import crud from '../conexiones/crud';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import swal from 'sweetalert'; 
 
-const CrearCategoria = () => {
+const ActualizarCategoria = () => {
+    
   const navigate = useNavigate(); 
+  //leer el idCategoria con el Hook  y 
+  const {idCategoria} = useParams();
+    console.log(idCategoria);
     
     const [categoria, setCategoria] = useState({
         nombre:'',
         imagen:''
       })
+
+      //Hacer el GET
+      const cargarCategoria = async () =>{
+        const response = await crud.GET(`/api/categorias/${idCategoria}`);
+       // console.log(response);
+       //llenando las cajas
+        setCategoria(response.categoria);
+      }
+
+      //Para poder ejecutar una funcion y llenar las cajas
+      useEffect(() =>{ 
+        cargarCategoria();
+      },[]);//para que solo se cargue una vez
+
       
-    const { nombre, imagen} = categoria; //constante para armar el json
+    let { nombre, imagen } = categoria;
 
       const onChange = (e) =>{
         setCategoria({
@@ -21,23 +40,39 @@ const CrearCategoria = () => {
         })
       }
 
-      const crearCategoria = async () =>{
+      const actualizarCategoria = async () =>{
         const data = {
           nombre: categoria.nombre,
           imagen: categoria.imagen
         }
-          //mandar a la bd
-          const response = await crud.POST(`/api/categorias`, data);
-          const mensaje = response.msg;
-          console.log(mensaje); //lo que devuelve  si se creo categoria
+       //console.log(data, idCategoria);
+          const response = await crud.PUT(`/api/categorias/${idCategoria}`, data);
+          console.log(response);
+          const mensaje1 = "la categoria se actualizo correctamente";
+          swal({
+            title:'Información',
+            text: mensaje1,
+            icon: 'success',
+            buttons:{
+              confirm:{
+                text: 'OK',
+                value: true,
+                visible: true,
+                className: 'btn btn-primary',
+                closeModal: true
+              }
+            }
+          });
           navigate("/admin");
          
       }
     
       const onSubmit = (e) => {
-        e.preventDefault(); //hace los componentes fijos que no se actualice
-        crearCategoria();
+        e.preventDefault();
+        actualizarCategoria();
       }
+      
+     
       
   return (
     <>
@@ -47,14 +82,14 @@ const CrearCategoria = () => {
         <main className='flex-1'>
         <div className='mt-10 flex justify-center'>
         <h1 className="inline bg-gradient-to-r from-indigo-200 via-violet-700 to-indigo-200 bg-clip-text font-display text-5xl tracking-tight text-transparent">
-              Crear Categoria
+              Actualizar Categoria
             </h1>
         </div>
         
         <div className='mt-10 flex justify-center' >
         <form 
               className='my-10 bg-white shadow rounded-lg p-10 '
-              onSubmit={onSubmit}   //dispara el formulario
+              onSubmit={onSubmit}
             >
               <div className='my-5'>
                 <label className='uppercase text-gray-600 block text-xl font-bold' >Nombre de la categoria</label>
@@ -65,15 +100,15 @@ const CrearCategoria = () => {
                   placeholder='Nombre'
                   className='w-full mt-3 p-3 border rounded-lg bg-gray-50'
                  value={nombre}
-                  onChange={onChange}   //dispara la caja
+                  onChange={onChange}
                 />
-                {/* caja de la imagen */}
-                <label className='uppercase text-gray-600 block text-xl font-bold' >Imagen de la categoria</label>
+
+              <label className='uppercase text-gray-600 block text-xl font-bold' >Imagen de la categoria</label>
                 <input
                   type="text"
                   id="imagen"
                   name="imagen"
-                  placeholder='Nombre'
+                  placeholder='imagen'
                   className='w-full mt-3 p-3 border rounded-lg bg-gray-50'
                   value={imagen}
                   onChange={onChange}
@@ -82,7 +117,7 @@ const CrearCategoria = () => {
 
               <input 
                 type="submit"
-                value="Crear Categoria"
+                value="Actualizar Categoria"
                 className="bg-violet-600 mb-5 w-full py-3 text-white uppercase font-bold rounded hover:cursor-pointer hover:bg-violet-400 transition-colors"
             />
 
@@ -94,11 +129,8 @@ const CrearCategoria = () => {
       </div>
       
       
-    
-      
-      
       </>
     );
 }
 
-export default CrearCategoria;
+export default ActualizarCategoria;
