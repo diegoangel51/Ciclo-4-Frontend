@@ -4,6 +4,7 @@ import Header from '../Header';
 import Sidebar from '../Sidebar';
 import crud from '../../conexiones/crud';
 import swal from 'sweetalert'; 
+import ViewProductos from './ViewProductos';
 
 const HomeProductos = () => {
   
@@ -55,7 +56,17 @@ const HomeProductos = () => {
                 className='bg-violet-600 w-full p-3 text-white uppercase font-bold mt-5 text-center rounded-lg'
               >Crear Producto</Link>
             </div>
-
+             {/* crear  grilla */}
+            <div className="bg-gray-600 shadow mt-10 rounded-lg">
+            {productos.map( producto =>  //recorre todo el json del  useStated
+             //invocar  al componente
+             <ViewProductos
+             //se envia parametros el id y todo el jason completo
+                key={producto._id}
+                producto={producto}
+              />
+            )}
+          </div>
 
 
             </main>
