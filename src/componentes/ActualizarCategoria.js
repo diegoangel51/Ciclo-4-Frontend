@@ -81,7 +81,7 @@ const ActualizarCategoria = () => {
         <Sidebar/>
         <main className='flex-1'>
         <div className='mt-10 flex justify-center'>
-        <h1 className="inline bg-gradient-to-r from-indigo-200 via-violet-700 to-indigo-200 bg-clip-text font-display text-5xl tracking-tight text-transparent">
+        <h1 className="inline bg-gradient-to-rfrom-slate-500 via-neutral-900 to-sky-50 bg-clip-text font-display text-5xl tracking-tight text-transparent">
               Actualizar Categoria
             </h1>
         </div>
@@ -118,8 +118,10 @@ const ActualizarCategoria = () => {
               <input 
                 type="submit"
                 value="Actualizar Categoria"
-                className="bg-violet-600 mb-5 w-full py-3 text-white uppercase font-bold rounded hover:cursor-pointer hover:bg-violet-400 transition-colors"
-            />
+               className="bg-gray-500 mb-5 w-full py-3  text-white uppercase font-bold rounded hover:cursor-pointer hover:bg-sky-500 transition-colors"
+
+           
+           />
 
             </form>
         </div >

@@ -44,8 +44,8 @@ const HomeProductos = () => {
         <Sidebar/>
             <main className= 'flex-1'>
               <div className='mt-10 flex justify-center'>
-              <h1 className="inline bg-gradient-to-r from-indigo-200 via-violet-700 to-indigo-200 bg-clip-text font-display text-5xl tracking-tight text-transparent">
-                Listado de Productos
+              <h1 className="font-bold inline bg-gradient-to-r from-sky-50 via-neutral-900 to-sky-50 bg-clip-text font-display text-5xl tracking-tight text-transparent">
+                 Listado de Productos
                 </h1>
                 </div>  
               
@@ -53,18 +53,21 @@ const HomeProductos = () => {
               {/* //boton */}
               <Link
                 to={`/crear-producto/${idCategoria}`}
-                className='bg-violet-600 w-full p-3 text-white uppercase font-bold mt-5 text-center rounded-lg'
-              >Crear Producto</Link>
+                className="bg-gray-500 mb-5 w-full py-3  text-white uppercase font-bold rounded hover:cursor-pointer hover:bg-sky-500 transition-colors"
+                >Crear Producto</Link>
             </div>
              {/* crear  grilla */}
-            <div className="bg-gray-600 shadow mt-10 rounded-lg">
+            <div className="bg-slate-50 shadow mt-10 rounded-lg">
+           
             {productos.map( producto =>  //recorre todo el json del  useStated
+              
              //invocar  al componente
              <ViewProductos
              //se envia parametros el id y todo el jason completo
                 key={producto._id}
                 producto={producto}
               />
+          
             )}
           </div>
 

@@ -65,9 +65,12 @@ const Admin = () => {
       <div className='md:flex md:min-h-screen'>
         <Sidebar/>
         <main className= 'flex-1'>
-   <h1 className="inline bg-gradient-to-r from-indigo-200 via-violet-700 to-indigo-200 bg-clip-text font-display text-5xl tracking-tight text-transparent">
+   <h1 className="font-bold inline bg-gradient-to-r from-sky-50 via-neutral-900 to-sky-50 bg-clip-text font-display text-5xl tracking-tight text-transparent">
     Listado de categorias
     </h1>
+    <br></br> 
+    <br></br> 
+    <br></br> 
     <table className="table table-bordered">
         <thead className='bg-white'>
             <tr>

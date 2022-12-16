@@ -110,8 +110,8 @@ const CrearCuenta = () => {
     
       <main className='container mx-auto mt-5 md:mt-20 p-5 md:flex md:justify-center'>
       <div className='md:w-2/3 lg:w-2/5'>
-         <h1 className="inline bg-gradient-to-r from-indigo-200 via-violet-700 to-indigo-200 bg-clip-text font-display text-5xl tracking-tight text-transparent">
-            Iniciar sesión Advance Technology
+         <h1 className="font-bold inline bg-gradient-to-r  from-sky-50 via-neutral-900 to-sky-50 bg-clip-text font-display text-5xl tracking-tight text-transparent">
+            Crea tu Cuenta en Advance Technology
          </h1>
 
           <form 
@@ -167,11 +167,12 @@ const CrearCuenta = () => {
            <input 
              type="submit"
              value="Crear Cuenta"
-             className="bg-violet-600 mb-5 w-full py-3 text-white uppercase font-bold rounded hover:cursor-pointer hover:bg-violet-400 transition-colors"
+             className="bg-gray-500 mb-5 w-full py-3  text-white uppercase font-bold rounded hover:cursor-pointer hover:bg-sky-500 transition-colors"
+
          />
          <Link 
          to={"/"}
-         className="block text-center my-5 text-violet-600 uppercase text-sm"
+         className="font-bold block text-center my-5 text-sky-600 uppercase text-sm"
          >Regresar</Link>
 
          </form>
